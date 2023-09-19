@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class ="row">
+    <div class="col-md-5">
+        {% with messages = get_flashed_messages() %}
+            {% if messages%}
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{message}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}   
+        <div class="card card-body">            
+            <form action = 'Add_Libros' method = 'POST'>
+                <div class ="form-group">   <input  type="text" name="Idautor"   placeholder="Id autor"             class="form-control">   </div>
+                <div class ="form-group">   <input  type="text" name="Titulo"    placeholder="Titulo"               class="form-control">   </div>
+                <div class ="form-group">   <input  type="text" name="Editorial" placeholder="Editorial"            class="form-control">   </div>
+                <div class ="form-group">   <input  type="date" name="Fecha"     placeholder="Fecha de lanzamiento" class="form-control">   </div>
+                <div class ="form-group">   <button type="submit" class="btn btn-primary btn-block">Agregar libro</button>   </div>
+            </form>    
+        </div>
+        <!--        -->
+    </div>
+
+    <div class="col-md-7">
+        <table class ="table-striped table-bordered bg-white table-sm">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Titulo</td>
+                    <td>Editorial</td>
+                    <td>N. Autor</td>
+                    <td>A. Autor</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in lista_libros %}
+                    <tr>
+                        <td>{{ x.0 }}</td>
+                        <td>{{ x.1 }}</td>
+                        <td>{{ x.2 }}</td>
+                        <td>{{ x.3 }}</td>
+                        <td>{{ x.4 }}</td>
+                        <td>
+                            <a href ="/Libros_Edit/{{x.0}}" class = "btn btn-secondary">Editar</a>
+                            <a href ="/Delete_Libros/{{x.0}}" class = "btn  btn-danger btn-delete">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>     
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class ="row">
+    <div class="col-md-5">
+        {% with messages = get_flashed_messages() %}
+            {% if messages%}
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{message}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}   
+        <div class="card card-body">            
+            <form action = '/add' method = 'POST'>
+                <div class ="form-group">   <input  type="text" name="dni"       placeholder="DNI"       class="form-control">   </div>
+                <div class ="form-group">   <input  type="text" name="nombres"   placeholder="Nombres"   class="form-control">   </div>
+                <div class ="form-group">   <input  type="text" name="apellidos" placeholder="Apellidos" class="form-control">   </div>
+                <div class ="form-group">   <input  type="text" name="numero"    placeholder="Número"    class="form-control">   </div>
+                <div class ="form-group">   <button type="submit" class="btn btn-primary btn-block">Guardar</button>   </div>
+            </form>    
+        </div>
+    </div>
+
+    <div class="col-md-7">
+        <table class ="table-striped table-bordered bg-white table-sm">
+            <thead>
+                <tr>
+                    <td>DNI</td>
+                    <td>Nombres</td>
+                    <td>Apellidos</td>
+                    <td>Número</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in lectores %}
+                    <tr>
+                        <td>{{ x.0 }}</td>
+                        <td>{{ x.1 }}</td>
+                        <td>{{ x.2 }}</td>
+                        <td>{{ x.3 }}</td>
+                        <td>
+                            <a href ="/edit/{{x.0}}" class = "btn btn-secondary">Editar</a>
+                            <a href ="/delete/{{x.0}}" class = "btn  btn-danger btn-delete">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>     
+        </table>
+    </div>
+</div>
+
+{% endblock %}

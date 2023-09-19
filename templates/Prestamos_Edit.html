@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="col-md-4 offset-md-4">    
+    <div class="card card-body">
+        <form action = '/Prestamos_Update/{{prestamo.0}}' method = 'POST'>
+            <div class="form-group">    <input  type="text" name="id_libro"       placeholder="Id del libro"        class="form-control">   </div>
+            <div class="form-group">    <input  type="text" name="dni"            placeholder="DNI del lector"      class="form-control">   </div>
+            <div class="form-group">    <input  type="date" name="fecha_prestamo" placeholder="Fecha de prestamo"   class="form-control">   </div>
+            <div class="form-group">    <button type="submit" class="btn btn-success btn-block">    guardar nuevos datos    </button>   </div>
+        </form> 
+    </div>
+</div>
+     
+{% endblock %}

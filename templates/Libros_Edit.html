@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="col-md-4 offset-md-4">    
+    <div class="card card-body">
+        <form action = '/Update_Libros/{{libro.0}}' method = 'POST'>
+            <div class ="form-group">   <input  type="text" name="Idautor"   placeholder="Id autor"             class="form-control">   </div>
+            <div class ="form-group">   <input  type="text" name="Titulo"    placeholder="Titulo"               class="form-control">   </div>
+            <div class ="form-group">   <input  type="text" name="Editorial" placeholder="Editorial"            class="form-control">   </div>
+            <div class ="form-group">   <input  type="date" name="Fecha"     placeholder="Fecha de lanzamiento" class="form-control">   </div>
+            <div class ="form-group">   <button type="submit" class="btn btn-success btn-block">    guardar nuevos datos    </button>   </div>
+        </form> 
+    </div>
+</div>
+     
+{% endblock %}
